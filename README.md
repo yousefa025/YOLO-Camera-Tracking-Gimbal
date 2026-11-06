@@ -6,7 +6,11 @@ A Raspberry Pi camera gimbal that uses YOLO person detection and ByteTrack to tr
 
 I handled the camera module setup and wrote all the project code, including the person tracking, servo control, and IMU integration. Timothy handled the chassis printing, servo calibration, and IMU hardware setup.
 
-## Demo
+## Demos
+
+
+https://github.com/user-attachments/assets/777e8838-c9c0-4bbc-82a6-2825a546ff8e
+
 
 | Assembled gimbal | My person tracking tests |
 | :---: | :---: |

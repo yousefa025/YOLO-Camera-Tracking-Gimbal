@@ -1,25 +1,32 @@
 # YOLO Camera Tracking Gimbal
 
-A Raspberry Pi camera gimbal that uses YOLO person detection and ByteTrack to track a person in the camera image. The group prototype combines the camera software with a three-axis servo mount and orientation feedback.
+A Raspberry Pi camera gimbal that uses YOLO person detection and ByteTrack to track a person in the camera image. The prototype combines the camera software with a three-axis servo mount and orientation feedback.
 
-**My contribution:** Raspberry Pi camera setup, Python person tracking, target selection, image offset calculations, and tracking tests.
+**Project team: Yousef Ahmadzai and Timothy Titus.**
+
+I handled the camera module setup and wrote all the project code, including the person tracking, servo control, and IMU integration. Timothy handled the chassis printing, servo calibration, and IMU hardware setup.
 
 ## Demo
 
-| Assembled group prototype | My person tracking tests |
+| Assembled gimbal | My person tracking tests |
 | :---: | :---: |
 | [<img src="media/images/complete-gimbal-preview.jpg" width="230" alt="Assembled camera gimbal on its stand">](media/videos/complete-gimbal-demo.mp4) | [<img src="media/images/tracking-preview.jpg" width="230" alt="Person detection and tracking displayed on a monitor">](media/videos/person-tracking-test-02.mp4) |
 | [Watch the assembled gimbal demo](media/videos/complete-gimbal-demo.mp4) | [Watch the tracking test](media/videos/person-tracking-test-02.mp4) |
 
 The recordings show different stages of the project, including camera tracking, an IMU and servo test, and the assembled gimbal.
 
-## My role
+## Team and contributions
 
-I worked on setting up the Raspberry Pi camera and using Python, YOLO, and OpenCV to detect and track a person. The tracking work included keeping a target ID with ByteTrack, finding the person's position relative to the center of the image, and using a deadzone to avoid small corrections when the person was already near the center. I also tested the target display and what happens when the person leaves the camera view.
+| Contributor | Work on the project |
+| --- | --- |
+| **Yousef Ahmadzai** | Camera module setup and configuration; all project code, including camera capture, YOLO and ByteTrack person tracking, target selection, image offset calculations, servo control, IMU integration, and calibration routines; software tuning, tweaking, and testing |
+| **Timothy Titus** | 3D printing the chassis and gimbal structure, servo calibration, and IMU hardware setup |
+
+I wrote the software that connects the camera tracking to the servo commands and IMU readings. I also adjusted the tracking settings and tested how the system behaves when a person moves or leaves the camera view. Timothy handled the chassis printing and hardware calibration and setup listed above.
 
 I contributed a research section about how LiDAR measurements are captured and used in robot navigation. The related documents are included in the research folder. This camera project uses image-based tracking and does not measure distance with LiDAR.
 
-This was a group project. The videos and hardware photos show the shared build, while this repository highlights my camera and tracking contribution.
+The videos and hardware photos show the prototype Timothy and I worked on together.
 
 ## How the software works
 
@@ -36,7 +43,7 @@ When no target is detected, the script keeps the last yaw and pitch targets. It 
 
 | File | What it shows | Length |
 | --- | --- | --- |
-| [Assembled gimbal demo](media/videos/complete-gimbal-demo.mp4) | The group prototype, camera mount, and operating setup | 2 min 9 sec |
+| [Assembled gimbal demo](media/videos/complete-gimbal-demo.mp4) | Our prototype, camera mount, and operating setup | 2 min 9 sec |
 | [IMU and servo test](media/videos/imu-servo-test.mp4) | A handheld orientation sensor and the servo test setup | 45 sec |
 | [Person tracking test 1](media/videos/person-tracking-test-01.mp4) | Person detection, a target ID, and the tracking display | 8 sec |
 | [Person tracking test 2](media/videos/person-tracking-test-02.mp4) | Person tracking and the target leaving and returning to view | 17 sec |
@@ -59,7 +66,7 @@ The project uses a Raspberry Pi 5, a camera connected over CSI, a printed gimbal
 
 ## Source code
 
-The uploaded Python integration script is in [src/gimbal_tracking.py](src/gimbal_tracking.py). It has been renamed from the supplied text file, with its contents preserved.
+The Python integration script is in [src/gimbal_tracking.py](src/gimbal_tracking.py). I wrote the project software, including the camera, tracking, servo, and IMU code. The repository copy includes a contribution header; its executable logic is unchanged from the supplied script.
 
 | Key | Action |
 | --- | --- |
@@ -101,7 +108,6 @@ Setup references: [Picamera2 documentation](https://www.raspberrypi.com/document
 | Document | Credit and scope |
 | --- | --- |
 | [LiDAR software and navigation research](docs/lidar-software-research-yousef.docx) | My supplied research section about LiDAR data and the MiR250 example |
-| [LiDAR background](docs/lidar-background-andrey.docx) | Background section credited in the supplied document to Andrey Ignatesko |
-| [LiDAR in Robotics presentation](docs/lidar-in-robotics-draft.pptx) | Supplied team research presentation; its cover still contains a team/course/date placeholder |
+| [LiDAR in Robotics presentation](docs/lidar-in-robotics-draft.pptx) | Research presentation with project credits for Yousef Ahmadzai and Timothy Titus |
 
-The documents are preserved as supplied and provide background for the project's sensor research.
+The research section and presentation provide background for the project's sensor research.

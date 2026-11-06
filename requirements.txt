@@ -1,0 +1,3 @@
+# Raspberry Pi OS supplies Picamera2, OpenCV, lgpio, and smbus in README setup.
+# Exact versions from the original Raspberry Pi environment were not supplied.
+ultralytics

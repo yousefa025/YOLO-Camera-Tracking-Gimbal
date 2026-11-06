@@ -24,7 +24,7 @@ The recordings show different stages of the project, including camera tracking, 
 
 I wrote the software that connects the camera tracking to the servo commands and IMU readings. I also adjusted the tracking settings and tested how the system behaves when a person moves or leaves the camera view. Timothy handled the chassis printing and hardware calibration and setup listed above.
 
-I contributed a research section about how LiDAR measurements are captured and used in robot navigation. The related documents are included in the research folder. This camera project uses image-based tracking and does not measure distance with LiDAR.
+I contributed a research section about how LiDAR measurements are captured and used in robot navigation. The research documents are in `docs`. This camera project uses image-based tracking and does not measure distance with LiDAR.
 
 The videos and hardware photos show the prototype Timothy and I worked on together.
 
@@ -35,7 +35,7 @@ The videos and hardware photos show the prototype Timothy and I worked on togeth
 3. The software keeps the selected ID while it is available. If that ID disappears, it can select another available tracked person.
 4. The center of the person's bounding box is compared with the center of the camera image.
 5. Errors larger than 25 pixels adjust the yaw and pitch targets. Each servo command is limited to a maximum change of 2 degrees per update.
-6. The supplied integration script also reads accelerometer and gyroscope data from an MPU-9250 interface and uses the roll estimate for roll leveling.
+6. The integration script also reads accelerometer and gyroscope data from an MPU-9250 interface and uses the roll estimate for roll leveling.
 
 When no target is detected, the script keeps the last yaw and pitch targets. It does not keep a missing person's identity across a prolonged loss of detection.
 
@@ -66,7 +66,7 @@ The project uses a Raspberry Pi 5, a camera connected over CSI, a printed gimbal
 
 ## Source code
 
-The Python integration script is in [src/gimbal_tracking.py](src/gimbal_tracking.py). I wrote the project software, including the camera, tracking, servo, and IMU code. The repository copy includes a contribution header; its executable logic is unchanged from the supplied script.
+The Python software in [src/gimbal_tracking.py](src/gimbal_tracking.py) handles camera capture, person tracking, servo control, and IMU feedback.
 
 | Key | Action |
 | --- | --- |
@@ -85,7 +85,8 @@ A starting environment on Raspberry Pi OS is:
 
 ```bash
 sudo apt update
-sudo apt install python3-venv python3-picamera2 python3-opencv python3-lgpio python3-smbus
+sudo apt install python3-venv python3-picamera2 python3-opencv \
+    python3-lgpio python3-smbus
 python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
@@ -99,7 +100,7 @@ Run from the repository root:
 python src/gimbal_tracking.py
 ```
 
-The original Pi's exact package versions were not supplied. These setup commands and the integration script have not been rerun on the physical gimbal during repository preparation. The recordings cover multiple development stages, and their exact code revisions were not supplied.
+Exact dependency versions from the original Pi setup are not pinned, and the code revision used for each recording is not documented. The videos show the prototype at different stages of development. Reproducing the hardware setup requires checking the GPIO assignments, servo directions, and IMU mounting against the build.
 
 Setup references: [Picamera2 documentation](https://www.raspberrypi.com/documentation/accessories/camera-software.html), [Picamera2 manual](https://datasheets.raspberrypi.com/camera/picamera2-manual.pdf), and [Ultralytics on Raspberry Pi](https://docs.ultralytics.com/guides/raspberry-pi/).
 
@@ -107,7 +108,7 @@ Setup references: [Picamera2 documentation](https://www.raspberrypi.com/document
 
 | Document | Credit and scope |
 | --- | --- |
-| [LiDAR software and navigation research](docs/lidar-software-research-yousef.docx) | My supplied research section about LiDAR data and the MiR250 example |
+| [LiDAR software and navigation research](docs/lidar-software-research-yousef.docx) | My research section about LiDAR data and the MiR250 example |
 | [LiDAR in Robotics presentation](docs/lidar-in-robotics-draft.pptx) | Research presentation with project credits for Yousef Ahmadzai and Timothy Titus |
 
 The research section and presentation provide background for the project's sensor research.
